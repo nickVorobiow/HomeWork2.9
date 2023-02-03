@@ -53,4 +53,31 @@ public class Car extends Transport<CarDriver> implements Participant{
                     ", withoutKeyAccess=" + withoutKeyAccess;
         }
     }
+
+    enum BodyType {
+        SEDAN("седан"),
+        HATCHBACK("хэтчбэк"),
+        COUPE("купэ"),
+        UNIVERSAL("универсал"),
+        OFFROAD("внедорожник"),
+        SUV("кроссовер"),
+        PICKUP("пикап"),
+        VAN("фургон"),
+        MINIVAN("минивэн");
+
+        private String nameInRussian;
+
+        BodyType(String nameInRussian) {
+            this.nameInRussian = nameInRussian;
+        }
+
+        public String getNameInRussian() {
+            return nameInRussian;
+        }
+
+        @Override
+        public String toString() {
+            return "Тип кузова: " + nameInRussian;
+        }
+    }
 }
