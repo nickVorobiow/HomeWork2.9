@@ -35,4 +35,88 @@ public class Cargo extends Transport<CargoDriver> implements Participant {
                 super.toString() +
                 '}';
     }
+
+    enum N1 {
+        BOUNDS(null,3.5f);
+
+        private Float lower_bound;
+        private Float upper_bound;
+
+        N1(Float lower_bound, Float upper_bound) {
+            this.lower_bound = lower_bound;
+            this.upper_bound = upper_bound;
+        }
+
+        @Override
+        public String toString() {
+            if (lower_bound == null) {
+                return "Грузоподъемность до " +
+                        upper_bound + " тонн";
+            }
+            else if (upper_bound == null) {
+                return "Грузоподъемность от " +
+                        lower_bound + " тонн";
+            }
+            else {
+                return "Грузоподъемность от " +
+                        lower_bound + " до " + upper_bound + " тонн";
+            }
+        }
+    }
+
+    enum N2 {
+        BOUNDS(3.5f,12.0f);
+
+        private Float lower_bound;
+        private Float upper_bound;
+
+        N2(Float lower_bound, Float upper_bound) {
+            this.lower_bound = lower_bound;
+            this.upper_bound = upper_bound;
+        }
+
+        @Override
+        public String toString() {
+            if (lower_bound == null) {
+                return "Грузоподъемность до " +
+                        upper_bound + " тонн";
+            }
+            else if (upper_bound == null) {
+                return "Грузоподъемность от " +
+                        lower_bound + " тонн";
+            }
+            else {
+                return "Грузоподъемность от " +
+                        lower_bound + " до " + upper_bound + " тонн";
+            }
+        }
+    }
+
+    enum N3 {
+        BOUNDS(12.0f,null);
+
+        private Float lower_bound;
+        private Float upper_bound;
+
+        N3(Float lower_bound, Float upper_bound) {
+            this.lower_bound = lower_bound;
+            this.upper_bound = upper_bound;
+        }
+
+        @Override
+        public String toString() {
+            if (lower_bound == null) {
+                return "Грузоподъемность до " +
+                        upper_bound + " тонн";
+            }
+            else if (upper_bound == null) {
+                return "Грузоподъемность от " +
+                        lower_bound + " тонн";
+            }
+            else {
+                return "Грузоподъемность от " +
+                        lower_bound + " до " + upper_bound + " тонн";
+            }
+        }
+    }
 }
