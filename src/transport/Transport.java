@@ -43,6 +43,8 @@ public abstract class Transport<T extends Driver> {
     public abstract void startMove();
     public abstract void stopMove();
 
+    public abstract void printType();
+
     @Override
     public String toString() {
         return

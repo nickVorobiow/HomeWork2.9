@@ -38,6 +38,9 @@ public class Main {
         printMessage(car1);
         printMessage(cargo1);
         printMessage(bus1);
+
+        System.out.println();
+        bus1.printType();
     }
 
     private static void printMessage(Transport<?> transport) {
