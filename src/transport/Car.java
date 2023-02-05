@@ -3,10 +3,11 @@ package transport;
 import com.company.CarDriver;
 
 public class Car extends Transport<CarDriver> implements Participant{
-    Type type = Type.valueOf("CAR");
+    BodyType bodyType;
 
-    public Car(String brand, String model, String engineVolume, CarDriver driver) {
+    public Car(String brand, String model, String engineVolume, CarDriver driver, BodyType bodyType) {
         super(brand, model, engineVolume, driver);
+        this.bodyType = bodyType;
     }
 
     @Override
@@ -25,21 +26,20 @@ public class Car extends Transport<CarDriver> implements Participant{
     }
 
     @Override
+    public Type getType() {
+        return Type.valueOf("CAR");
+    }
+    @Override
     public void printType() {
-        if (type != null) {
-            System.out.println("Тип машины:" + type.getName());
+        if (bodyType != null) {
+            System.out.println("Тип машины:" + bodyType.getNameInRussian());
         }
         else {
             System.out.println("Данных по транспортному средству недостаточно");
         }
     }
 
-    public Type getType() {
-        return type;
-    }
-    public void setType(Type type) {
-        this.type = type;
-    }
+
 
     @Override
     public String toString() {
@@ -67,7 +67,7 @@ public class Car extends Transport<CarDriver> implements Participant{
         }
     }
 
-    enum BodyType {
+    public enum BodyType {
         SEDAN("седан"),
         HATCHBACK("хэтчбэк"),
         COUPE("купэ"),

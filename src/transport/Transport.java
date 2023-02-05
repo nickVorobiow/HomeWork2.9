@@ -32,9 +32,7 @@ public abstract class Transport<T extends Driver> {
         return model;
     }
 
-    public String getEngineVolume() {
-        return engineVolume;
-    }
+    public String getEngineVolume() {return engineVolume;}
     public void setEngineVolume(String engineVolume) {
         if (Double.parseDouble(engineVolume) <= 0) {this.engineVolume = "default";}
         else {this.engineVolume = engineVolume;}
@@ -44,6 +42,7 @@ public abstract class Transport<T extends Driver> {
     public abstract void stopMove();
 
     public abstract void printType();
+    public abstract Type getType();
 
     @Override
     public String toString() {
