@@ -2,10 +2,10 @@ package transport;
 import com.company.BusDriver;
 
 public class Bus extends Transport<BusDriver> implements Participant {
-    Type type = Type.valueOf("BUS");
-
-    public Bus(String brand, String model, String engineVolume, BusDriver driver) {
+    Capacity capacity;
+    public Bus(String brand, String model, String engineVolume, BusDriver driver, Capacity capacity) {
         super(brand, model, engineVolume, driver);
+        this.capacity = capacity;
     }
 
     @Override
@@ -29,17 +29,14 @@ public class Bus extends Transport<BusDriver> implements Participant {
         System.out.println("Максимальная скорость автобуса:___");
     }
 
+    @Override
     public Type getType() {
-        return type;
+        return Type.valueOf("BUS");
     }
-    public void setType(Type type) {
-        this.type = type;
-    }
-
     @Override
     public void printType() {
-        if (type != null) {
-            System.out.println("Тип машины:" + type.getName());
+        if (capacity != null) {
+            System.out.println("Автобус с вместительностью:\n\t" + capacity);
         }
         else {
             System.out.println("Данных по транспортному средству недостаточно");
@@ -53,7 +50,7 @@ public class Bus extends Transport<BusDriver> implements Participant {
                 '}';
     }
 
-    enum Capacity{
+    public enum Capacity{
         specialSmall(null, 10),
         small(null, 25),
         middle(25, 50),

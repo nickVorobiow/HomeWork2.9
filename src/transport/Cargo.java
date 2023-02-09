@@ -2,10 +2,10 @@ package transport;
 import com.company.CargoDriver;
 
 public class Cargo extends Transport<CargoDriver> implements Participant {
-    Type type = Type.valueOf("CARGO");
-
-    public Cargo(String brand, String model, String engineVolume, CargoDriver driver) {
+    Tonnage tonnage;
+    public Cargo(String brand, String model, String engineVolume, CargoDriver driver, Tonnage tonnage) {
         super(brand, model, engineVolume, driver);
+        this.tonnage = tonnage;
     }
 
     @Override
@@ -33,17 +33,15 @@ public class Cargo extends Transport<CargoDriver> implements Participant {
         System.out.println("Максимальная скорость грузовой машины:___");
     }
 
-    public Type getType() {
-        return type;
-    }
-    public void setType(Type type) {
-        this.type = type;
-    }
 
     @Override
+    public Type getType() {
+        return Type.valueOf("CARGO");
+    }
+    @Override
     public void printType() {
-        if (type != null) {
-            System.out.println("Тип машины:" + type.getName());
+        if (tonnage != null) {
+            System.out.println("Грузовой автомобиль с грузоподъемностью:\n\t" + tonnage);
         }
         else {
             System.out.println("Данных по транспортному средству недостаточно");
@@ -57,7 +55,7 @@ public class Cargo extends Transport<CargoDriver> implements Participant {
                 '}';
     }
 
-    enum Tonnage {
+    public enum Tonnage {
         N1(null, 3.5f),
         N2(3.5f, 12.0f),
         N3(12.0f, null);
