@@ -1,10 +1,7 @@
 package com.company;
-
-
 import transport.*;
 
 public class Main {
-
     public static void main(String[] args) throws TransportTypeException {
         CarDriver driver1 = new CarDriver("driver1", true, 5);
         Car.BodyType bodyType1 = Car.BodyType.valueOf("SEDAN");
@@ -63,7 +60,7 @@ public class Main {
         }
     }
 
-    private static void printMessage(Transport<?> transport) {
+    private static void printMessage(Transport<? extends Driver> transport) {
         System.out.println("Водитель " + transport.getDriver().getFullName() +
                 " управляет автомобилем " + transport.getBrand() + " " + transport.getModel()
                 + " и будет участвовать в заезде");
