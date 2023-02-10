@@ -29,6 +29,12 @@ public class Car extends Transport<CarDriver> implements Participant{
     public Type getType() {
         return Type.valueOf("CAR");
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("На диагностике для легковых авто...");
+    }
+
     @Override
     public void printType() {
         if (bodyType != null) {

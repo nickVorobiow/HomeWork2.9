@@ -1,7 +1,7 @@
 package transport;
 import com.company.Driver;
 
-public abstract class Transport<T extends Driver> {
+public abstract class Transport<T extends Driver> implements Participant {
     private final String brand;
     private final String model;
     private String engineVolume;
@@ -43,6 +43,8 @@ public abstract class Transport<T extends Driver> {
 
     public abstract void printType();
     public abstract Type getType();
+
+    public abstract void passDiagnostics() throws TransportTypeException;
 
     @Override
     public String toString() {

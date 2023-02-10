@@ -1,7 +1,7 @@
 package transport;
 import com.company.BusDriver;
 
-public class Bus extends Transport<BusDriver> implements Participant {
+public class Bus extends Transport<BusDriver> {
     Capacity capacity;
     public Bus(String brand, String model, String engineVolume, BusDriver driver, Capacity capacity) {
         super(brand, model, engineVolume, driver);
@@ -33,6 +33,12 @@ public class Bus extends Transport<BusDriver> implements Participant {
     public Type getType() {
         return Type.valueOf("BUS");
     }
+
+    @Override
+    public void passDiagnostics() throws TransportTypeException{
+        throw new TransportTypeException("Автобусам проходить диагностику не нужно");
+    }
+
     @Override
     public void printType() {
         if (capacity != null) {

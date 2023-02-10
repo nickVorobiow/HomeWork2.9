@@ -38,6 +38,12 @@ public class Cargo extends Transport<CargoDriver> implements Participant {
     public Type getType() {
         return Type.valueOf("CARGO");
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("На диагностике для грузовых авто...");
+    }
+
     @Override
     public void printType() {
         if (tonnage != null) {

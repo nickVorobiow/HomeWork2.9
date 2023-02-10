@@ -1,14 +1,11 @@
 package com.company;
 
 
-import transport.Bus;
-import transport.Car;
-import transport.Cargo;
-import transport.Transport;
+import transport.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransportTypeException {
         CarDriver driver1 = new CarDriver("driver1", true, 5);
         Car.BodyType bodyType1 = Car.BodyType.valueOf("SEDAN");
         Car.BodyType bodyType2 = Car.BodyType.valueOf("COUPE");
@@ -55,6 +52,15 @@ public class Main {
         car1.printType();
         bus1.printType();
         cargo1.printType();
+
+        System.out.println();
+        car2.passDiagnostics();
+        cargo2.passDiagnostics();
+        try {
+            bus2.passDiagnostics();
+        } catch (TransportTypeException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void printMessage(Transport<?> transport) {
