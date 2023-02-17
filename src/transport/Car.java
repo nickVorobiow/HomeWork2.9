@@ -1,5 +1,4 @@
 package transport;
-
 import com.company.CarDriver;
 import com.company.Mechanic;
 import java.util.List;
@@ -60,14 +59,14 @@ public class Car extends Transport<CarDriver> implements Participant{
     }
 
     public class Key {
-        private final boolean distantEnginePower;
-        private final boolean withoutKeyAccess;
+        private final Boolean distantEnginePower;
+        private final Boolean withoutKeyAccess;
 
-        public Key(boolean distantEnginePower, boolean withoutKeyAccess) {
-            if (new Boolean(distantEnginePower) ==  null) {this.distantEnginePower = false;}
+        public Key(Boolean distantEnginePower, Boolean withoutKeyAccess) {
+            if (distantEnginePower ==  null) {this.distantEnginePower = false;}
             else {this.distantEnginePower = distantEnginePower;}
 
-            if (new Boolean(withoutKeyAccess) == null) {this.withoutKeyAccess = false;}
+            if (withoutKeyAccess == null) {this.withoutKeyAccess = false;}
             else {this.withoutKeyAccess = withoutKeyAccess;}
         }
 

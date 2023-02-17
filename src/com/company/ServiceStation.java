@@ -4,14 +4,14 @@ import transport.TransportTypeException;
 import java.util.Queue;
 
 public class ServiceStation {
-    private Queue<Transport> transportQueue;
+    private Queue<Transport<? extends Driver>> transportQueue;
 
-    public ServiceStation(Queue<Transport> transportQueue) {
+    public ServiceStation(Queue<Transport<? extends Driver>> transportQueue) {
         this.transportQueue = transportQueue;
     }
 
     public void doDiagnostics() throws TransportTypeException {
-        Transport transport;
+        Transport<? extends Driver> transport;
         while ((transport = transportQueue.poll()) != null) {
             if (transport.passDiagnostics()) {
                 System.out.println("Диагностика пройдена");

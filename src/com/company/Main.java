@@ -1,18 +1,15 @@
 package com.company;
 import transport.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws TransportTypeException {
-        Mechanic mechanic1 = new Mechanic("Nikita", "A");
-        Mechanic mechanic2 = new Mechanic("Kirill", "B");
-        Mechanic mechanic3 = new Mechanic("Artem", "C");
-        Mechanic mechanic4 = new Mechanic("Vlad", "D");
-        Mechanic mechanic5 = new Mechanic("John", "E");
+        Mechanic mechanic1 = new Mechanic("Mechanic1", "A");
+        Mechanic mechanic2 = new Mechanic("Mechanic2", "B");
+        Mechanic mechanic3 = new Mechanic("Mechanic3", "C");
+        Mechanic mechanic4 = new Mechanic("Mechanic4", "D");
+        Mechanic mechanic5 = new Mechanic("Mechanic5", "E");
 
         List<Mechanic> mechanicList = new ArrayList<>();
         mechanicList.add(mechanic1);
@@ -20,7 +17,6 @@ public class Main {
         mechanicList.add(mechanic3);
         mechanicList.add(mechanic4);
         mechanicList.add(mechanic5);
-
 
         CarDriver driver1 = new CarDriver("driver1", true, 5);
         Car.BodyType bodyType1 = Car.BodyType.valueOf("SEDAN");
@@ -81,7 +77,7 @@ public class Main {
         }
 
         System.out.println();
-        List<Transport> transportList = new ArrayList<>();
+        List<Transport<? extends Driver>> transportList = new ArrayList<>();
         transportList.add(car1);
         transportList.add(car2);
         transportList.add(car3);
@@ -95,17 +91,35 @@ public class Main {
         transportList.add(bus3);
         transportList.add(bus4);
 
-        for (Transport transport : transportList) {
+        for (Transport<? extends Driver> transport : transportList) {
             System.out.println(transport);
         }
 
         System.out.println("\n---------------------------------------");
-        Queue<Transport> transportQueue = new LinkedList<>(transportList);
+        Queue<Transport<? extends Driver>> transportQueue = new LinkedList<>(transportList);
         ServiceStation serviceStation = new ServiceStation(transportQueue);
         try {
             serviceStation.doDiagnostics();
         } catch (TransportTypeException e) {
             e.printStackTrace();
+        }
+
+        Map<Transport<? extends Driver>, List<Mechanic>> TransportMechanicHashMap = new HashMap<>();
+        fillTransportMechanicHashMap(TransportMechanicHashMap, transportList, mechanicList);
+        printHashMap(TransportMechanicHashMap);
+    }
+
+
+    private static void fillTransportMechanicHashMap(Map<Transport<? extends Driver>, List<Mechanic>> TransportMechanicHashMap,
+                                                     List<Transport<? extends Driver>> transportList, List<Mechanic> mechanicList) {
+        for (int index = 0; index < transportList.size(); index++) {
+            TransportMechanicHashMap.put(transportList.get(index), mechanicList);
+        }
+    }
+
+    private static void printHashMap(Map<Transport<? extends Driver>, List<Mechanic>> map) {
+        for (Map.Entry<Transport<? extends Driver>, List<Mechanic>> element : map.entrySet()) {
+            System.out.println(element.getKey() + " обслуживается механиками: " + element.getValue());
         }
     }
 
