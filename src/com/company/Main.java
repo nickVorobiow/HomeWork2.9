@@ -105,6 +105,7 @@ public class Main {
         }
 
         Map<Transport<? extends Driver>, List<Mechanic>> TransportMechanicHashMap = new HashMap<>();
+
         fillTransportMechanicHashMap(TransportMechanicHashMap, transportList, mechanicList);
         printHashMap(TransportMechanicHashMap);
     }
@@ -112,6 +113,7 @@ public class Main {
 
     private static void fillTransportMechanicHashMap(Map<Transport<? extends Driver>, List<Mechanic>> TransportMechanicHashMap,
                                                      List<Transport<? extends Driver>> transportList, List<Mechanic> mechanicList) {
+
         for (int index = 0; index < transportList.size(); index++) {
             TransportMechanicHashMap.put(transportList.get(index), mechanicList);
         }
