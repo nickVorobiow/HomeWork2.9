@@ -2,6 +2,7 @@ package transport;
 import com.company.Driver;
 import com.company.Mechanic;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Transport<T extends Driver> implements Participant {
     private final String brand;
@@ -62,8 +63,24 @@ public abstract class Transport<T extends Driver> implements Participant {
                 "brand:'" + brand + '\'' +
                 ", model:'" + model + '\'' +
                 ", engineVolume:'" + engineVolume + '\'' +
-                ", driver name:'" + driver.getFullName() + '\'' +
-                ", mechanics:'" + mechanicList + '\'';
+                ", driver name:'" + driver.getFullName() + '\'';
+                       //+ ", mechanics:'" + mechanicList + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport<? extends Driver> transport = (Transport<? extends Driver>) o;
+        return brand.equals(transport.brand) &&
+                model.equals(transport.model) &&
+                engineVolume.equals(transport.engineVolume) &&
+                driver.equals(transport.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, driver);
     }
 }
 
